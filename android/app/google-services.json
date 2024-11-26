@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "13389530077",
+    "project_id": "namal-mess-database",
+    "storage_bucket": "namal-mess-database.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13389530077:android:2e7636ef147d828bb0ec34",
+        "android_client_info": {
+          "package_name": "com.example.namalmessapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI5qZj-5h2wIZ4DutbSfWwe6vRrtFiBQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13389530077:android:21f5a6e076a889b7b0ec34",
+        "android_client_info": {
+          "package_name": "com.example.untitled123"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI5qZj-5h2wIZ4DutbSfWwe6vRrtFiBQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
