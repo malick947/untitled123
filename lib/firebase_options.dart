@@ -41,48 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD3k2GLz8joD6kgGs32wH5GKpMX1kEiy-Q',
-    appId: '1:13389530077:web:9db20fc4ed785543b0ec34',
-    messagingSenderId: '13389530077',
-    projectId: 'namal-mess-database',
-    authDomain: 'namal-mess-database.firebaseapp.com',
-    storageBucket: 'namal-mess-database.firebasestorage.app',
-    measurementId: 'G-1NGPE4JGJQ',
+    apiKey: 'AIzaSyBRw6hDhXaIcPjv8n6f7GQQ2a9OP20go3U',
+    appId: '1:10332678311:web:6a545d57196cafda509382',
+    messagingSenderId: '10332678311',
+    projectId: 'newnamal-407c8',
+    authDomain: 'newnamal-407c8.firebaseapp.com',
+    storageBucket: 'newnamal-407c8.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCI5qZj-5h2wIZ4DutbSfWwe6vRrtFiBQY',
-    appId: '1:13389530077:android:21f5a6e076a889b7b0ec34',
-    messagingSenderId: '13389530077',
-    projectId: 'namal-mess-database',
-    storageBucket: 'namal-mess-database.firebasestorage.app',
+    apiKey: 'AIzaSyAj-rQ-uTdyzSCzBfJOrIixErHLleaSwAc',
+    appId: '1:10332678311:android:9fd89757b91aca56509382',
+    messagingSenderId: '10332678311',
+    projectId: 'newnamal-407c8',
+    storageBucket: 'newnamal-407c8.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBuXulSVEc7_YSzma27HCNzUwj8xjWJVDY',
-    appId: '1:13389530077:ios:9ffc7316f951fa85b0ec34',
-    messagingSenderId: '13389530077',
-    projectId: 'namal-mess-database',
-    storageBucket: 'namal-mess-database.firebasestorage.app',
+    apiKey: 'AIzaSyDOLml8fT2maSVczZZIInflKMza0sumsYs',
+    appId: '1:10332678311:ios:2960e78dc0bacaa2509382',
+    messagingSenderId: '10332678311',
+    projectId: 'newnamal-407c8',
+    storageBucket: 'newnamal-407c8.firebasestorage.app',
     iosBundleId: 'com.example.untitled123',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBuXulSVEc7_YSzma27HCNzUwj8xjWJVDY',
-    appId: '1:13389530077:ios:9ffc7316f951fa85b0ec34',
-    messagingSenderId: '13389530077',
-    projectId: 'namal-mess-database',
-    storageBucket: 'namal-mess-database.firebasestorage.app',
+    apiKey: 'AIzaSyDOLml8fT2maSVczZZIInflKMza0sumsYs',
+    appId: '1:10332678311:ios:2960e78dc0bacaa2509382',
+    messagingSenderId: '10332678311',
+    projectId: 'newnamal-407c8',
+    storageBucket: 'newnamal-407c8.firebasestorage.app',
     iosBundleId: 'com.example.untitled123',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyD3k2GLz8joD6kgGs32wH5GKpMX1kEiy-Q',
-    appId: '1:13389530077:web:d7513f8f49f63587b0ec34',
-    messagingSenderId: '13389530077',
-    projectId: 'namal-mess-database',
-    authDomain: 'namal-mess-database.firebaseapp.com',
-    storageBucket: 'namal-mess-database.firebasestorage.app',
-    measurementId: 'G-VWRVVT5SER',
+    apiKey: 'AIzaSyBdCCZk8PH7RXxxd5fQmZ1mmloEEqrPzz0',
+    appId: '1:10332678311:web:e63508ce5d3b1cb2509382',
+    messagingSenderId: '10332678311',
+    projectId: 'newnamal-407c8',
+    authDomain: 'newnamal-407c8.firebaseapp.com',
+    storageBucket: 'newnamal-407c8.firebasestorage.app',
   );
+
 }
