@@ -16,7 +16,6 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
 
   int selectedindex = 0;
-  static const TextStyle tstyle = TextStyle(fontSize: 30,fontWeight: FontWeight.w600);
   static const List<Widget> options = <Widget>[
     // Text("Home",style: tstyle,),
     // Text("Notifications",style: tstyle,),
@@ -48,14 +47,14 @@ class _HomescreenState extends State<Homescreen> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
               child: GNav(
                 rippleColor: Colors.grey.shade300,
                 hoverColor: Colors.grey.shade100,
                 gap: 8,
                 activeColor: Colors.orange,
                 iconSize: 24,
-                padding: EdgeInsets.symmetric(vertical: 18,horizontal: 18),
+                padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 18),
                 tabBackgroundColor: Colors.grey.shade100,
                 color: Colors.black,
                 tabs: const [
