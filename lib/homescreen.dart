@@ -16,12 +16,12 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
 
   int selectedindex = 0;
-  static const List<Widget> options = <Widget>[
+  static List<Widget> options = <Widget>[
     // Text("Home",style: tstyle,),
     // Text("Notifications",style: tstyle,),
     // Text("Queue",style: tstyle,),
     // Text("Account",style: tstyle,),
-    MenuScreen(),
+    FetchDataExample(),
     NotificationScreen(),
     QueueScreen(),
     AccountScreen()
