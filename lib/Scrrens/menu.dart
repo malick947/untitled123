@@ -50,18 +50,21 @@ class _FetchDataExampleState extends State<FetchDataExample>
             children: [
               // Search Bar
               Padding(
-                
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "Search you meals..",
-                    
-                    prefixIcon: HugeIcon(icon: HugeIcons.strokeRoundedSearch01, color: Colors.orange),
-                    border: OutlineInputBorder(),
+                    prefixIcon: HugeIcon(
+                        icon: HugeIcons.strokeRoundedSearch01,
+                        color: Colors.orange),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
                     focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.orange, width: 2.0), // Change the color and width here
-      ),
-                    
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                          color: Colors.orange,
+                          width: 2.0), // Change the color and width here
+                    ),
                   ),
                   onChanged: (value) {
                     setState(() {
@@ -72,6 +75,8 @@ class _FetchDataExampleState extends State<FetchDataExample>
               ),
               // Tabs
               TabBar(
+                labelColor: Colors.orange,
+                indicatorColor: Colors.orange,
                 controller: tabController,
                 isScrollable: true,
                 tabs: days.map((day) => Tab(text: day)).toList(),
@@ -98,9 +103,12 @@ class _FetchDataExampleState extends State<FetchDataExample>
 
               // Filter menu items by search query
               final List<dynamic> items = snapshot.data!.docs
-                  .expand((doc) => (doc.data() as Map<String, dynamic>)['items'])
+                  .expand(
+                      (doc) => (doc.data() as Map<String, dynamic>)['items'])
                   .where((item) =>
-                      (item['name'] as String).toLowerCase().contains(searchQuery) ||
+                      (item['name'] as String)
+                          .toLowerCase()
+                          .contains(searchQuery) ||
                       (item['description'] as String)
                           .toLowerCase()
                           .contains(searchQuery))
@@ -110,59 +118,129 @@ class _FetchDataExampleState extends State<FetchDataExample>
                 return Center(child: Text("No items match your search query."));
               }
 
-              return ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
+              return GridView.count(
+                crossAxisCount:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 2 // 2 cards per row in portrait mode
+                        : 3, // 3 cards per row in landscape mode
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+                padding: EdgeInsets.all(8),
+                children: List.generate(items.length, (index) {
                   Map<String, dynamic> item = items[index];
                   return Card(
                     color: Colors.blueGrey.shade100,
-                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    // child: ListTile(
-                    //   title: Text(
-                    //     item['name'],
-                    //     style: TextStyle(fontWeight: FontWeight.bold),
-                    //   ),
-                    //   subtitle: Text(item['description']),
-                    //   trailing: Text(
-                    //     "Price: ${item['price']}",
-                    //     style: TextStyle(fontWeight: FontWeight.bold),
-                    //   ),
-                    // ),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 20,horizontal: 15),
-                      child: Row(
-                        children: [
-                          // Container(
-                          //   padding: EdgeInsets.all(8),
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.white,
-                          //     shape: BoxShape.circle
-                          //   ),
-                          //   child: CircleAvatar(
-                          //     radius: 45,
-                          //     backgroundImage: AssetImage("assets/imagetest.png"),
-                          //   ),
-                          // ),
-                          
-                          SizedBox(width: 20,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Image Section
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "assets/imagetest.png", // Replace with your image path
+                              width: double.infinity,
+                              height: 100, // Adjust height to fit the layout
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        // Text Section
+                        Text(
+                          item['name'],
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Price: \$${item['price']}",
+                          style: TextStyle(
+                              fontSize: 12, color: Colors.black),
+                        ),
+                        // Quantity Section
+                        Container(
+                          padding: EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          margin: EdgeInsets.only(
+                              bottom: 8), // Adds some spacing at the bottom
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                item['name'],
-                                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),
+                              // Minus Button
+                              GestureDetector(
+                                onTap: () {
+                                  // Handle decrement
+                                },
+                                child: Container(
+                                  width: 25,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange,
+                                    borderRadius: BorderRadius.circular(13),
+                                  ),
+                                  child: Center(
+                                    child: HugeIcon(
+                                      icon: HugeIcons.strokeRoundedMinusSign,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
                                 ),
-                              Text(
-                                "Price: ${item['price']}",
-                                style: TextStyle(color: Colors.black),
+                              ),
+                              // Quantity
+                              SizedBox(
+                                width: 30,
+                                child: Center(
+                                  child: Text(
+                                    "1",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
+                              ),
+                              // Plus Button
+                              GestureDetector(
+                                onTap: () {
+                                  // Handle increment
+                                },
+                                child: Container(
+                                  width: 25,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    color: Colors.orange,
+                                    borderRadius: BorderRadius.circular(13),
+                                  ),
+                                  child: Center(
+                                    child: HugeIcon(
+                                      icon: HugeIcons.strokeRoundedAdd01,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
                   );
-                },
+                }),
               );
             },
           );
