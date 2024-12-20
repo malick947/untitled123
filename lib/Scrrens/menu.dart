@@ -115,6 +115,7 @@ class _FetchDataExampleState extends State<FetchDataExample>
                 itemBuilder: (context, index) {
                   Map<String, dynamic> item = items[index];
                   return Card(
+                    color: Colors.blueGrey.shade100,
                     margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     // child: ListTile(
                     //   title: Text(
@@ -131,10 +132,18 @@ class _FetchDataExampleState extends State<FetchDataExample>
                       padding: EdgeInsets.symmetric(vertical: 20,horizontal: 15),
                       child: Row(
                         children: [
-                          CircleAvatar(
-                            radius: 45,
-                            backgroundImage: AssetImage("assets/imagetest.png"),
-                          ),
+                          // Container(
+                          //   padding: EdgeInsets.all(8),
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.white,
+                          //     shape: BoxShape.circle
+                          //   ),
+                          //   child: CircleAvatar(
+                          //     radius: 45,
+                          //     backgroundImage: AssetImage("assets/imagetest.png"),
+                          //   ),
+                          // ),
+                          
                           SizedBox(width: 20,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +158,6 @@ class _FetchDataExampleState extends State<FetchDataExample>
                                 ),
                             ],
                           )
-
                         ],
                       ),
                     ),
