@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -9,6 +11,7 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
+  double quantitySelector = 0.0;
   TabController? tabController;
   List<MenuDay> menuData = [];
   String searchQuery = "";
@@ -30,6 +33,18 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
     tabController = TabController(
         length: weekDays.length, vsync: this); // Fixed tabs for 7 days
     fetchData();
+  }
+
+  void increment() {
+    setState(() {
+      quantitySelector = quantitySelector + 0.5;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      quantitySelector = quantitySelector - 0.5;
+    });
   }
 
   Future<void> fetchData() async {
@@ -61,7 +76,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: TextField(
               onChanged: (value) {
                 setState(() {
@@ -88,14 +103,19 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
             indicatorColor: Colors.orange,
             labelColor: Colors.orange,
             controller: tabController,
-            tabs: weekDays.map((day) => Tab(text: day)).toList(), // Fixed tabs for all days
+            tabs: weekDays
+                .map((day) => Tab(text: day))
+                .toList(), // Fixed tabs for all days
           ),
           Expanded(
             child: TabBarView(
               controller: tabController,
               children: weekDays.map((day) {
                 // Find menu data for the current day
-                final menuDay = menuData.firstWhere((menu) => menu.day == day,orElse: () =>MenuDay(day: day, items: []), );// Default empty menu
+                final menuDay = menuData.firstWhere(
+                  (menu) => menu.day == day,
+                  orElse: () => MenuDay(day: day, items: []),
+                ); // Default empty menu
 
                 // Filter items based on search query
                 final filteredItems = menuDay.items.where((item) {
@@ -122,13 +142,13 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
                       color: Colors.blueGrey.shade100,
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                       child: Container(
-                        padding: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 5),
+                        padding: EdgeInsets.only(
+                            top: 20, left: 20, right: 20, bottom: 5),
                         child: Column(
                           //spacing: 10,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
-                              
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -150,7 +170,6 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
                                 //fit: BoxFit.cover,
                               ),
                             ),
-                            
                             Text(
                               item.name,
                               style: TextStyle(
@@ -159,51 +178,63 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
                                 color: Colors.black,
                               ),
                             ),
-                            
                             Text(
                               "Price: ${item.price}",
                               style:
                                   TextStyle(fontSize: 14, color: Colors.black),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 10,right: 10),
+                              margin: EdgeInsets.only(left: 10, right: 10),
                               padding: EdgeInsets.all(5),
                               height: 34,
                               decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(15)
-
-                              ),
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(15)),
                               child: Row(
                                 children: [
-                                  Container(
-                                    padding: EdgeInsets.all(1),
-                                  
-                              decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(15)
-                                
-
-                              ),
-                              child: HugeIcon(icon: HugeIcons.strokeRoundedMinusSign, color: Colors.white),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (quantitySelector >= 0.5) {
+                                        decrement();
+                                      }
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(1),
+                                      decoration: BoxDecoration(
+                                          color: Colors.orange,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: HugeIcon(
+                                          icon:
+                                              HugeIcons.strokeRoundedMinusSign,
+                                          color: Colors.white),
+                                    ),
                                   ),
                                   Expanded(
                                     child: Container(
-                                      child: Center(child: Text("1",style: TextStyle(color: Colors.white),)),
+                                      child: Center(
+                                          child: Text(
+                                        quantitySelector.toString(),
+                                        style: TextStyle(color: Colors.white),
+                                      )),
                                     ),
                                   ),
-                                  Container(
-                                    padding: EdgeInsets.all(1),
-                                   
-                              decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(15)
-
-                              ),
-                              child: HugeIcon(icon: HugeIcons.strokeRoundedAdd01, color: Colors.white),
+                                  GestureDetector(
+                                    onTap: () {
+                                      increment();
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(1),
+                                      decoration: BoxDecoration(
+                                          color: Colors.orange,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: HugeIcon(
+                                          icon: HugeIcons.strokeRoundedAdd01,
+                                          color: Colors.white),
+                                    ),
                                   ),
                                 ],
-
                               ),
                             )
                           ],
