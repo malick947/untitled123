@@ -44,13 +44,13 @@ class _SignupState extends State<Signup> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Column(
-                  spacing: 20,
+                  //spacing: 20,
                   children: [
 
                     Form(
                       key: _formkey,
                       child: Column(
-                        spacing: 30,
+                        //spacing: 30,
                         children: [
 
                           TextFormField(
@@ -74,6 +74,7 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           TextFormField(
 
                             validator: (value) {
@@ -95,6 +96,7 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           TextFormField(
 
                             validator: (value) {
@@ -116,6 +118,7 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           DropdownButtonHideUnderline(child: DropdownButton2(
                             value: DropDownValue,
                               isExpanded: true,
@@ -148,6 +151,7 @@ class _SignupState extends State<Signup> {
                               height: 40,
                             ),)
                           ),
+                          SizedBox(height: 30,),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: RoundButton(

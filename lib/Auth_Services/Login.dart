@@ -40,16 +40,17 @@ class _LoginState extends State<Login> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Column(
-                  spacing: 20,
+                  //spacing: 20,
                   children: [
                     Text(
                       "Welcome Back!!!",
                       style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 30,),
                     Form(
                       key: _formkey,
                       child: Column(
-                        spacing: 30,
+                        //spacing: 30,
                         children: [
                           TextFormField(
                             validator: (value) {
@@ -71,6 +72,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           TextFormField(
                             obscureText: true,
                             validator: (value) {
@@ -92,6 +94,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 30,),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: RoundButton(
@@ -106,6 +109,7 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 30,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -120,12 +124,14 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 30,),
                     RoundButton(
                       text: 'Create Account',
                       onTap: () {
                         // Action for creating Account
                       },
                     ),
+                    SizedBox(height: 30,),
                     DropdownButton<String>(
                       value: DropDownValue,
                       icon: Icon(Icons.add, size: 25, color: Colors.white),
