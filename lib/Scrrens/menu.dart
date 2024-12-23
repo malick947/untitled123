@@ -50,24 +50,18 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
-        child: AppBar(
-          title: Center(
-            child: Padding(
-              padding: EdgeInsets.only(top: 30),
-              child: Text(
-                "Menu",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-            ),
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            "Menu",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 16),
             child: TextField(
               onChanged: (value) {
                 setState(() {
@@ -94,20 +88,14 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
             indicatorColor: Colors.orange,
             labelColor: Colors.orange,
             controller: tabController,
-            tabs: weekDays
-                .map((day) => Tab(text: day))
-                .toList(), // Fixed tabs for all days
+            tabs: weekDays.map((day) => Tab(text: day)).toList(), // Fixed tabs for all days
           ),
           Expanded(
             child: TabBarView(
               controller: tabController,
               children: weekDays.map((day) {
                 // Find menu data for the current day
-                final menuDay = menuData.firstWhere(
-                  (menu) => menu.day == day,
-                  orElse: () =>
-                      MenuDay(day: day, items: []), // Default empty menu
-                );
+                final menuDay = menuData.firstWhere((menu) => menu.day == day,orElse: () =>MenuDay(day: day, items: []), );// Default empty menu
 
                 // Filter items based on search query
                 final filteredItems = menuDay.items.where((item) {
@@ -123,7 +111,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
 
                 // Render grid of items
                 return GridView.count(
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.65,
                   crossAxisCount: 2,
                   crossAxisSpacing: 8.0,
                   mainAxisSpacing: 8.0,
@@ -136,6 +124,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
                       child: Container(
                         padding: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 5),
                         child: Column(
+                          //spacing: 10,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
@@ -165,7 +154,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
                             Text(
                               item.name,
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),

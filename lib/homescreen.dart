@@ -47,14 +47,14 @@ class _HomescreenState extends State<Homescreen> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
               child: GNav(
                 rippleColor: Colors.grey.shade300,
                 hoverColor: Colors.grey.shade100,
                 gap: 8,
                 activeColor: Colors.orange,
                 iconSize: 24,
-                padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 18),
+                padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                 tabBackgroundColor: Colors.grey.shade100,
                 color: Colors.black,
                 tabs: const [
