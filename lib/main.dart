@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:untitled123/UI_helper/Splash_Screen.dart';
 import 'package:untitled123/homescreen.dart';
 
 void main() async {
@@ -15,7 +16,7 @@ class myApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Firebase App',
-      home: Homescreen(), // Replace this with your main screen
+      home: SplashScreen(), // Replace this with your main screen
     );
   }
 }

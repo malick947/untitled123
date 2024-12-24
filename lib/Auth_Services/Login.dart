@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled123/Auth_Services/SignUp.dart';
+import 'package:untitled123/homescreen.dart';
 import '../UI_helper/Custom_widgets.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,15 +13,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String? DropDownValue; // Make this nullable
+  bool loading=false;
+  String? DropDownValue;
+  FirebaseAuth _auth=FirebaseAuth.instance;
+  var email = TextEditingController();
+  var password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    var email = TextEditingController();
-    var password = TextEditingController();
+
 
     return Scaffold(
       body: Container(
@@ -95,10 +102,21 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: RoundButton(
+                              loading: loading,
                               text: 'Login',
                               onTap: () {
                                 if (_formkey.currentState!.validate()) {
+
                                   // Handle login
+                                  setState(() {
+                                    loading=true;
+                                  });
+                                  _auth.signInWithEmailAndPassword(email: email.text.trim(), password: password.text.trim()).then((value){
+                                    setState(() {
+                                      loading=false;
+                                    });
+                                    Get.off(Homescreen());
+                                  });
                                 }
                               },
                             ),
@@ -124,40 +142,10 @@ class _LoginState extends State<Login> {
                       text: 'Create Account',
                       onTap: () {
                         // Action for creating Account
+                        Get.to(Signup());
                       },
                     ),
-                    DropdownButton<String>(
-                      value: DropDownValue,
-                      icon: Icon(Icons.add, size: 25, color: Colors.white),
-                      underline: Container(
-                        height: 10,
-                        width: 20,
-                      ),
-                      items: [
-                        DropdownMenuItem<String>(
-                          value: null, // Optional "Select your role" item
-                          child: Text("Select your role"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Male Student",
-                          child: Text("Male Student"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Female Student",
-                          child: Text("Female Student"),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: "Faculty or staff",
-                          child: Text("Faculty or Staff"),
-                        ),
-                      ],
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          DropDownValue = newValue;
-                          debugPrint(newValue);
-                        });
-                      },
-                    ),
+
                   ],
                 ),
               ),

@@ -41,6 +41,7 @@ dependencies:
   hugeicons: ^0.0.7
   google_nav_bar: ^5.0.7
   dropdown_button2: ^2.3.8
+  firebase_auth: ^5.3.4
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +68,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/imagetest.png
-
+    - assets/user.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
